@@ -1,0 +1,82 @@
+<% if @consultant_roles.first != nil %>
+    <% percent_attributable_rev_generating = @consultant_roles.first.total_rev_generating_percent_attributable * 100 %>
+    <% percent_attributable_non_rev_generating = @consultant_roles.first.total_non_rev_generating_percent_attributable * 100 %>
+<% else %>
+    <% percent_attributable_rev_generating = 0 %>
+    <% percent_attributable_non_rev_generating = 0 %>
+<% end %>
+
+<!-- <h2>Import Consultant Roles</h2>
+<%= form_tag import_consultant_roles_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %> -->
+
+<h2 class="medium-margin-bottom">Employees on Search # <%= @search.reference_num %></h2>
+<p>Client: <%= @search.client.name %></p>
+<p>Title: <%= @search.title %></p>
+<p>Fee Amount: <%= number_to_currency(@search.fee_amount, :precision => 0) %></p>
+<p>% Attributable (Revenue Generating Employees): <%= percent_attributable_rev_generating %>%</p>
+<p class="heavy-margin-bottom">% Attributable (Non-Revenue Generating Employees): <%= percent_attributable_non_rev_generating %>%</p>
+
+<% if @consultant_roles.first && @consultant_roles.first.total_rev_generating_percent_attributable != 1 %>
+    <p class="light-margin-bottom red">Total percent attributable for revenue generating employees on this search is <%= @consultant_roles.first.total_rev_generating_percent_attributable * 100 %>%. This needs to be 100%</p>
+<% end %>
+
+<% if @consultant_roles.first && @consultant_roles.first.total_non_rev_generating_percent_attributable != 1 %>
+    <p class="heavy-margin-bottom red">Total percent attributable for non revenue generating employees on this search is <%= @consultant_roles.first.total_non_rev_generating_percent_attributable * 100 %>%. This needs to be 100%</p>
+<% end %>
+
+<table class="table table-striped">
+  <tr>
+    <th>Employee</th>
+    <th>Search</th>
+    <th>Role</th>
+    <th>% Attributable</th>
+    <th>Budgeted Hours</th>
+    <th>Actual Hours</th>
+    <th>Variance</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @consultant_roles.each do |consultant_role| %>
+  <tr>
+    <td><%= link_to consultant_role.employee.first_initial_name, consultant_role.employee %></td>
+    <td><%= link_to consultant_role.search.reference_num, consultant_role.search %></td>
+    <td><%= consultant_role.role %></td>
+    <td><%= "#{consultant_role.percent_attributable * 100}%" unless consultant_role.percent_attributable == nil %></td>
+    <td><%= consultant_role.budgeted_hours %></td>
+    <td><%= consultant_role.actual_hours %></td>
+    <td><%= consultant_role.hours_variance %></td>
+    <td><%= link_to 'Edit', edit_consultant_role_path(consultant_role) %></td>
+    <td><%= link_to 'Delete from Search', consultant_role_path(consultant_role, :search_id => @search.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+  <tr>
+    <td>Total Revenue Generating</td>
+    <td></td>
+    <td></td>
+    <td class="<%= 'red' if percent_attributable_rev_generating != 100 %>"><%= percent_attributable_rev_generating %>%</td>
+    <td><%=  %></td>
+    <td><%=  %></td>
+    <td><%=  %></td>
+    <td><%=  %></td>
+    <td><%=  %></td>
+  </tr>
+  <tr>
+    <td>Total Non Revenue Generating</td>
+    <td></td>
+    <td></td>
+    <td class="<%= 'red' if percent_attributable_non_rev_generating != 100 %>"><%= percent_attributable_non_rev_generating %>%</td>
+    <td><%=  %></td>
+    <td><%=  %></td>
+    <td><%=  %></td>
+    <td><%=  %></td>
+    <td><%=  %></td>
+  </tr>
+</table>
+
+<br />
+
+<%= link_to 'Add Employee', new_consultant_role_path(:search_id => @search.id), :class => 'btn btn-success' %>

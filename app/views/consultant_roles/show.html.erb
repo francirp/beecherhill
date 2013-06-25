@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Employee:</b>
+  <%= @consultant_role.employee_id %>
+</p>
+
+<p>
+  <b>Search:</b>
+  <%= @consultant_role.search_id %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @consultant_role.role %>
+</p>
+
+<p>
+  <b>Budgeted hours:</b>
+  <%= @consultant_role.budgeted_hours %>
+</p>
+
+<p>
+  <b>Actual hours:</b>
+  <%= @consultant_role.actual_hours %>
+</p>
+
+<p>
+  <b>Actual cost:</b>
+  <%= @consultant_role.actual_cost %>
+</p>
+
+
+<%= link_to 'Edit', edit_consultant_role_path(@consultant_role) %> |
+<%= link_to 'Back', consultant_roles_path %>

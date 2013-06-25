@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employee_id: 1
+  search_id: 1
+  type: 
+  budgeted_hours: 1
+  actual_hours: 1
+  actual_cost: 1
+
+two:
+  employee_id: 1
+  search_id: 1
+  type: 
+  budgeted_hours: 1
+  actual_hours: 1
+  actual_cost: 1

@@ -1,0 +1,39 @@
+<h1>Listing employee_budgets</h1>
+
+<table>
+  <tr>
+    <th>Emp</th>
+    <th>Budget</th>
+    <th>Base salary</th>
+    <th>Factor goal</th>
+    <th>Annual salary paid</th>
+    <th>Projected revenue</th>
+    <th>Annual hours</th>
+    <th>Percent revenue generating</th>
+    <th>Revenue generating wages</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @employee_budgets.each do |employee_budget| %>
+  <tr>
+    <td><%= employee_budget.emp_id %></td>
+    <td><%= employee_budget.budget_id %></td>
+    <td><%= employee_budget.base_salary %></td>
+    <td><%= employee_budget.factor_goal %></td>
+    <td><%= employee_budget.annual_salary_paid %></td>
+    <td><%= employee_budget.projected_revenue %></td>
+    <td><%= employee_budget.annual_hours %></td>
+    <td><%= employee_budget.percent_revenue_generating %></td>
+    <td><%= employee_budget.revenue_generating_wages %></td>
+    <td><%= link_to 'Show', employee_budget, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Edit', edit_employee_budget_path(employee_budget), :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Destroy', employee_budget, :class => 'btn btn-mini', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Employee budget', new_employee_budget_path %>

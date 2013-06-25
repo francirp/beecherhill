@@ -1,0 +1,41 @@
+</div>
+<h3 class="medium-padding">BeecherHill Employees
+<%= link_to 'Add Employee', new_employee_path, :class => 'btn btn-success medium-margin' %>
+</h3>
+
+
+<table class="table table-striped">
+  <tr>
+    <th>Full Name</th>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Current salary</th>
+    <th>Rev Generating %</th>
+    <th>Factor Goal</th>
+    <th>Days Off</th>
+    <th>Hours per Day</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @employees.each do |employee| %>
+  <tr>
+    <td><%= "#{employee.first_name} #{employee.last_name}" %></td>
+    <td><%= employee.title %></td>
+    <td><%= employee.category %></td>
+    <td><%= number_to_currency(employee.current_salary) %></td>
+    <td><%= "#{employee.percent_revenue_generating * 100}%" unless employee.percent_revenue_generating == nil %></td>
+    <td><%= employee.factor_goal %></td>
+    <td><%= employee.days_off %></td>
+    <td><%= employee.hours_per_day %></td>
+    <td><%= link_to 'Profile', employee, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Edit', edit_employee_path(employee), :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Delete', employee, :class => 'btn btn-mini', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

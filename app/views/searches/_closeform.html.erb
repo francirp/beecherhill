@@ -1,0 +1,75 @@
+<script>
+        $(document).ready(function() { $("#search_client_id").select2();
+          $(function() {
+            $( ".datepicker" ).datepicker();
+            });
+          });
+
+</script>
+
+<%= form_for(@search) do |f| %>
+  <% if @search.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@search.errors.count, "error") %> prohibited this search from being saved:</h2>
+
+      <ul>
+      <% @search.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="light-margin-bottom">
+    <%= f.text_field :reference_num, :placeholder => 'Reference Number' %>
+  </div>
+  <div class="medium-margin-bottom">
+    <%= f.collection_select(:client_id, Client.all, :id, :name) %>
+  </div>
+  <div class="medium-margin-bottom">
+    <%= f.label :new_client? %>
+    <%= f.check_box :new_client? %>
+  </div>
+
+  <div class="light-margin-top light-margin-bottom">
+    <%= f.text_field :title, :placeholder => 'Title' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :function, :placeholder => 'Function' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :level, :placeholder => 'Level' %>
+  </div>
+  <div class="light-margin-bottom">
+    <label for="search_start_date">Search Start Date</label>
+    <input type="text" id="search_start_date" name="search[search_start_date]" class="datepicker" />
+  </div>
+  <div class="light-margin-bottom">
+    <label for="engagement_letter_signed_date">Engagement Letter Signed Date</label>
+    <input type="text" id="engagement_letter_signed_date" name="search[engagement_letter_signed_date]" class="datepicker" />
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :be_lead, :placeholder => 'Business Expansion Lead' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :source, :placeholder => 'Source' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :introduction, :placeholder => 'Introduction' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.label :salary %>
+    <%= f.number_field :salary %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :target_bonus_percent, :placeholder => 'Target Bonus %' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :fee_percent, :placeholder => 'Fee %' %>
+  </div>
+<fieldset>
+  <div class="actions">
+    <center><%= f.submit 'Save Search', :class => 'btn btn-primary span4' %></center>
+  </div>
+</fieldset>
+<% end %>

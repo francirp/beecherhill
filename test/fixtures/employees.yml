@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  company_id: 1
+  title: MyString
+  category: MyString
+  current_salary: 1
+
+two:
+  user_id: 1
+  company_id: 1
+  title: MyString
+  category: MyString
+  current_salary: 1

@@ -1,0 +1,29 @@
+<div class="row-fluid">
+    <h2 class="heavy-margin-left pull-left">Cindy Hilsheimer's Searches</h2>
+</div>
+
+<div class="heavy-margin">
+  <table class="table table-striped">
+    <tr>
+      <th class="span1">Ref #></th>
+      <th class="span2">Client</th>
+      <th class="span2">Title</th>
+      <th class="span1">Start</th>
+      <th class="span1">Status</th>
+      <th class="span1">Role</th>
+      <!-- <th class="span2"><%= @employee.first_initial_name %> % Attributable</th> -->
+    </tr>
+
+  <% @employee.searches.order('search_start_date DESC').each do |search| %>
+    <% consultant_role = search.consultant_roles.where(:employee_id => @employee.id).first %>
+    <tr>
+      <td class="span1"><%= link_to search.reference_num, search %></td>
+      <td class="span2"><%= link_to search.client.name, search.client %></td>
+      <td class="span2"><%= search.title %></td>
+      <td class="span1"><%= search.search_start_date %></td>
+      <td class="span1"><%= search.status %></td>
+      <td class="span1"><%= consultant_role.role %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>

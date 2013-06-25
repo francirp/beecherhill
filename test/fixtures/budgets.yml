@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  year: 2013-06-18
+  total_expenses: 1
+  revenue_generating_wages: 1
+  target_profit_percent: 1.5
+
+two:
+  year: 2013-06-18
+  total_expenses: 1
+  revenue_generating_wages: 1
+  target_profit_percent: 1.5

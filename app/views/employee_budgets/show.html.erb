@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Emp:</b>
+  <%= @employee_budget.employee_id %>
+</p>
+
+<p>
+  <b>Budget:</b>
+  <%= @employee_budget.budget_id %>
+</p>
+
+<p>
+  <b>Base salary:</b>
+  <%= @employee_budget.base_salary %>
+</p>
+
+<p>
+  <b>Factor goal:</b>
+  <%= @employee_budget.factor_goal %>
+</p>
+
+<p>
+  <b>Annual salary paid:</b>
+  <%= @employee_budget.annual_salary_paid %>
+</p>
+
+<p>
+  <b>Projected revenue:</b>
+  <%= @employee_budget.projected_revenue %>
+</p>
+
+<p>
+  <b>Annual hours:</b>
+  <%= @employee_budget.annual_hours %>
+</p>
+
+<p>
+  <b>Percent revenue generating:</b>
+  <%= @employee_budget.percent_revenue_generating %>
+</p>
+
+<p>
+  <b>Revenue generating wages:</b>
+  <%= @employee_budget.revenue_generating_wages %>
+</p>
+
+
+<%= link_to 'Edit', edit_employee_budget_path(@employee_budget) %> |
+<%= link_to 'Back', employee_budgets_path %>

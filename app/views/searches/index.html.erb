@@ -1,0 +1,64 @@
+</div>
+
+<div class="row-fluid">
+    <h2 class="heavy-margin-left pull-left">Searches</h2>
+
+<%= link_to 'Add a New Search', new_search_path, :class => 'btn btn-primary btn-large medium-margin span3' %>
+</div>
+
+
+<%= form_tag(searches_url, :class => 'heavy-margin', method: 'get') do %>
+    <center><h4>Find a Search</h4></center>
+    <%= text_field_tag 'search', nil, placeholder: 'Enter Reference #, Client Name, or Status', class: 'search-query span5' %>
+<% end %>
+
+
+<div class="heavy-margin">
+    <table class="table table-striped">
+      <tr>
+        <th class="span1">Internal Resources</th>
+        <th class="span1">Ref #></th>
+        <th class="span2">Client</th>
+        <th class="span2">Title</th>
+        <th class="span1">Start</th>
+        <th class="span1">Status</th>
+        <th class="span1"># Emps</th>
+        <th class="span1">% Covered SP</th>
+        <th class="span1">% Covered RP</th>
+        <th class="span1"></th>
+        <th class="span1"></th>
+      </tr>
+
+    <% @searches.each do |search| %>
+        <% if search.consultant_roles.first != nil %>
+            <% percent_attributable_rev_generating = search.consultant_roles.first.total_rev_generating_percent_attributable * 100 %>
+            <% percent_attributable_non_rev_generating = search.consultant_roles.first.total_non_rev_generating_percent_attributable * 100 %>
+        <% else %>
+            <% percent_attributable_rev_generating = 0 %>
+            <% percent_attributable_non_rev_generating = 0 %>
+        <% end %>
+
+      <tr>
+        <td class="span1"><%= link_to 'Employees', consultant_roles_path(:search_id => search.id), :class => 'btn btn-success btn-mini' %></td>
+        <td class="span1"><%= link_to search.reference_num, search %></td>
+        <td class="span2"><%= link_to search.client.name, search.client %></td>
+        <td class="span2"><%= search.title %></td>
+        <td class="span1"><%= search.search_start_date %></td>
+        <td class="span1"><%= search.status %></td>
+        <td class="span1"><%= search.employees.count %></td>
+        <td class="span1 <%= 'red' if percent_attributable_rev_generating != 100 %>"><%= percent_attributable_rev_generating %>%</td>
+        <td class="span1 <%= 'red' if percent_attributable_non_rev_generating != 100 %>"><%= percent_attributable_non_rev_generating %>%</td>
+        <td class="span1"><%= link_to 'Edit Search', edit_search_path(search), :class => 'btn btn-default btn-mini' %></td>
+        <td class="span1"><%= link_to 'Delete', search, :class => 'btn btn-default btn-mini', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </table>
+</div>
+
+<br />
+
+<!-- <h2>Import Files</h2>
+<%= form_tag import_searches_path, multipart: true do %>
+  <%= file_field_tag :file %><br />
+  <%= submit_tag "Import" %>
+<% end %> -->

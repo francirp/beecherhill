@@ -1,0 +1,152 @@
+<script>
+        $(document).ready(function() { $("#search_client_id").select2();
+          $(function() {
+            $( ".datepicker" ).datepicker();
+            });
+          });
+
+</script>
+
+<% if @search.fee_percent %>
+  <% @search.fee_percent = @search.fee_percent * 100 %>
+<% end %>
+<% if @search.target_bonus_percent %>
+  <% @search.target_bonus_percent = @search.target_bonus_percent * 100 %>
+<% end %>
+
+<%= form_for(@search) do |f| %>
+  <% if @search.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@search.errors.count, "error") %> prohibited this search from being saved:</h2>
+
+      <ul>
+      <% @search.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="light-margin-bottom">
+    <%= f.text_field :reference_num, :placeholder => 'Reference Number*' %>
+  </div>
+  <div class="medium-margin-bottom">
+    <%= f.label 'Client*' %>
+    <%= f.collection_select(:client_id, Client.all, :id, :name) %>
+  </div>
+  <div class="medium-margin-bottom">
+    <%= f.label :new_client? %>
+    <%= f.check_box :new_client? %>
+  </div>
+
+  <div class="light-margin-top light-margin-bottom">
+    <%= f.text_field :title, :placeholder => 'Title*' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :function, :placeholder => 'Function' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :level, :placeholder => 'Level' %>
+  </div>
+  <div class="light-margin-bottom">
+    <label for="search_start_date">Search Start Date*</label>
+    <input type="text" id="search_start_date" name="search[search_start_date]" value="<%= @search.search_start_date.strftime("%m/%d/%Y") unless @search.search_start_date == nil %>" class="datepicker" />
+  </div>
+  <div class="light-margin-bottom">
+    <label for="engagement_letter_signed_date">Engagement Letter Signed Date</label>
+    <input type="text" id="engagement_letter_signed_date" name="search[engagement_letter_signed_date]" value="<%= @search.engagement_letter_signed_date.strftime("%m/%d/%Y") unless @search.engagement_letter_signed_date == nil %>" class="datepicker" />
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :be_lead, :placeholder => 'Business Expansion Lead' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :source, :placeholder => 'Source' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :introduction, :placeholder => 'Introduction' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.label :salary, 'Salary*' %>
+    <%= f.number_field :salary %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :target_bonus_percent, :placeholder => 'Target Bonus %' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :fee_percent, :placeholder => 'Fee %*' %>
+  </div>
+
+<fieldset>
+  <div class="actions">
+    <center><%= f.submit 'Save Search', :class => 'btn btn-primary span4' %></center>
+  </div>
+</fieldset>
+
+<ul class="nav nav-list heavy-margin-top">
+  <li class="divider"></li>
+</ul>
+
+<center><h4>CLOSE SEARCH BELOW</h4></center>
+
+<ul class="nav nav-list">
+  <li class="divider"></li>
+</ul>
+
+
+  <div class="light-margin-bottom">
+    <%= f.label :status %>
+    <%= f.select :status, ['Open', 'Closed', 'Closed - By Client'] %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :reason_closed, :placeholder => 'Reason Closed' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :notes, :placeholder => 'Notes' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :name_of_hire, :placeholder => 'Name of Hire' %>
+  </div>
+  <div class="light-margin-bottom">
+    <label for="signed_offer_date">Signed Offer Date</label>
+    <input type="text" id="signed_offer_date" name="search[signed_offer_date]" class="datepicker" />
+  </div>
+  <div class="light-margin-bottom">
+    <label for="placement_start_date">Placement Start Date</label>
+    <input type="text" id="placement_start_date" name="search[placement_start_date]" class="datepicker" />
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.label :signing_bonus %><br />
+    <%= f.number_field :signing_bonus %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :equity, :placeholder => 'Equity' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.label :network %>
+    <%= f.select :network, ['Internal', 'Referral: Biz', 'Referral: Client', 'Referral: NP', 'Referral: Personal', 'Research', 'Research Recruiter', 'SC-DB'] %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :introduced_by, :placeholder => 'Introduced By' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :relocation_from, :placeholder => 'Relocation From' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.text_field :relocation_to, :placeholder => 'Relocation To' %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.label :diversity %><br />
+    <%= f.select :diversity, ['Caucasian', 'African American', 'Asian', 'Hispanic', 'Not Applicable'] %>
+  </div>
+  <div class="light-margin-bottom">
+    <%= f.label :gender %><br />
+    <%= f.select :gender, ['Male', 'Female'] %>
+  </div>
+
+
+<fieldset>
+  <div class="actions">
+    <center><%= f.submit 'Save Search', :class => 'btn btn-primary span4' %></center>
+  </div>
+</fieldset>
+<% end %>

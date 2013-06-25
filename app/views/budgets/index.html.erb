@@ -1,0 +1,29 @@
+<% active_budget = Budget.where(:is_active => true).first %>
+<% if active_budget %>
+  <% active_budget_year = active_budget.year %>
+<% else %>
+  <% active_budget_year = "Please set active budget" %>
+<% end %>
+
+<h2>Budgets</h2>
+<div class="heavy-margin"></div>
+
+<p>Currently Active Budget:
+  <%= active_budget_year %>
+</p>
+<p class="heavy-margin-bottom">
+  <%= link_to 'Edit Active Budget', 'budgets/active' %>
+</p>
+
+<% @budgets.each do |budget| %>
+  <%= link_to budget.year, budget, :class => 'btn btn-info btn-large' %>
+  <%= link_to 'Edit', edit_budget_path(budget), :class => 'heavy-margin-left' %>
+  <% if Budget.where(:is_active => true).first != budget %>
+    <%= link_to 'Delete', budget, method: :delete, :class => 'heavy-margin-left', data: { confirm: 'Are you sure?' } %>
+  <% end %>
+  <div class="light-margin"></div>
+<% end %>
+
+<div class="heavy-margin"></div>
+
+<%= link_to 'Add Budget', new_budget_path, :class => 'btn btn-primary btn-large' %>

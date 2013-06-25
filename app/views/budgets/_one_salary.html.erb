@@ -1,0 +1,5 @@
+<td id="note_<%= note.id %>" class="note" data-nid="<%= note.id %>">
+  <em><%= note.content %></em>
+  <%= link_to image_tag('trash-can-icon.jpg', height: 20), note_url(note), method: 'delete', remote: true %>
+  <%= link_to image_tag('pencil.png', height: 20), edit_note_url(note) %>
+</li>

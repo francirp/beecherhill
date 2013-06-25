@@ -1,0 +1,9 @@
+<%= form_tag(update_active_budget_url, :method => 'put') do %>
+  <%= label_tag :budget %>
+  <%= select_tag :budget, options_from_collection_for_select(@budgets, :id, :year) %>
+  <fieldset>
+    <div class="actions">
+      <center><%= submit_tag 'Set as Active Budget', :class => 'btn btn-primary span4' %></center>
+    </div>
+  </fieldset>
+<% end %>

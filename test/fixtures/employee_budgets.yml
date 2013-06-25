@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  emp_id: 1
+  budget_id: 1
+  base_salary: 1
+  factor_goal: 1.5
+  annual_salary_paid: 1
+  projected_revenue: 1
+  annual_hours: 1
+  percent_revenue_generating: 1
+  revenue_generating_wages: 1
+
+two:
+  emp_id: 1
+  budget_id: 1
+  base_salary: 1
+  factor_goal: 1.5
+  annual_salary_paid: 1
+  projected_revenue: 1
+  annual_hours: 1
+  percent_revenue_generating: 1
+  revenue_generating_wages: 1

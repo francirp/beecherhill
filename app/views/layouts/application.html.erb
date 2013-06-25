@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Beecherhill</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+</head>
+<body>
+<header>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <%= link_to 'BeecherHill', root_url, :class => 'brand' %>
+        <ul class="nav">
+          <% if signed_in? != true %>
+            <li><%= link_to "Sign In", signin_url %></li>
+            <li><%= link_to "Sign Up", new_user_url %></li>
+          <% else %>
+            <li class="<%= 'active' if current_page?(current_user) %>"><%= link_to current_user.full_name, current_user %></li>
+            <% if current_user.position == "Owner" %>
+              <li class="<%= 'active' if current_page?(budgets_url) %>"><%= link_to 'Budgets', budgets_url %></li>
+              <li class="<%= 'active' if current_page?(employee_url(current_user.employee)) %>"><%= link_to 'Performance', "#" %></li>
+              <li class="<%= 'active' if current_page?(employees_url) %>"><%= link_to 'Employees', employees_url  %></li>
+              <li class="<%= 'active' if current_page?(searches_url) %>"><%= link_to 'Searches', searches_url %></li>
+              <li class="<%= 'active' if current_page?(clients_url) %>"><%= link_to 'Clients', clients_url %></li>
+            <% elsif current_user.position == "Relationship Management" %>
+              <li class="<%= 'active' if current_page?(employee_url(current_user.employee)) %>"><%= link_to 'Performance', "#" %></li>
+              <li class="<%= 'active' if current_page?(employees_url) %>"><%= link_to 'Employees', employees_url %></li>
+              <li class="<%= 'active' if current_page?(searches_url) %>"><%= link_to 'Searches', searches_url %></li>
+              <li class="<%= 'active' if current_page?(clients_url) %>"><%= link_to 'Clients', clients_url %></li>
+            <% end %>
+            <li><%= link_to 'Sign Out', signout_url, :method => 'delete' %></li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+<% if notice.present? %>
+  <div class="alert alert-info">
+    <%= notice %>
+  </div>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

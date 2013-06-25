@@ -1,0 +1,26 @@
+<% @employee_budget.budget_id = @budget.id %>
+<%= form_for(@employee_budget) do |f| %>
+  <% if @employee_budget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee_budget.errors.count, "error") %> prohibited this employee_budget from being saved:</h2>
+
+      <ul>
+      <% @employee_budget.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :budget_id %>
+
+  <div class="field">
+    <%= f.label :employee_id, "Employee" %><br />
+    <%= f.collection_select :employee_id, Employee.order('full_name ASC').all, :id, :full_name %>
+  </div>
+  <fieldset>
+    <div class="actions">
+      <center><%= f.submit 'Add Employee to Budget', :class => 'btn btn-primary span4' %></center>
+    </div>
+  </fieldset>
+<% end %>

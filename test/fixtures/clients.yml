@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  state: MyString
+  ownership: MyString
+  revenue: MyString
+  employees: MyString
+  industry: MyString
+
+two:
+  name: MyString
+  state: MyString
+  ownership: MyString
+  revenue: MyString
+  employees: MyString
+  industry: MyString

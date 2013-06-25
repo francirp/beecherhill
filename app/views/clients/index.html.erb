@@ -1,0 +1,33 @@
+<h1>Clients</h1>
+
+<!-- <h2>Import Files</h2>
+<%= form_tag import_clients_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %> -->
+
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>State</th>
+    <th># Searches</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @clients.each do |client| %>
+  <tr>
+    <td><%= client.name %></td>
+    <td><%= client.state %></td>
+    <td><%= client.searches.count %></td>
+    <td><%= link_to 'View', client %></td>
+    <td><%= link_to 'Edit', edit_client_path(client) %></td>
+    <td><%= link_to 'Delete', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Client', new_client_path %>

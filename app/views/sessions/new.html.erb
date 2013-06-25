@@ -1,0 +1,21 @@
+<h1>Sign In</h1>
+
+<%= form_tag(sessions_url, method: 'get') do %>
+
+  <div class="field">
+    <%= email_field_tag :email, @user.email, :placeholder => "Email" %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <div class="field">
+    <%= label_tag :password_confirmation %>
+    <%= password_field_tag :password_confirmation %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Sign In", :class => 'btn btn-primary span3' %>
+    <p>or <%= link_to "Sign Up", new_user_url %></p>
+  </div>
+<% end %>

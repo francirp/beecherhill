@@ -1,0 +1,58 @@
+<% @consultant_role.search_id = @search.id %>
+<% @consultant_role.percent_attributable = @consultant_role.percent_attributable * 100 unless @consultant_role.percent_attributable == nil %>
+
+<% if @search.consultant_roles.count > 0 %>
+  <table class="table table-striped">
+    <tr>
+      <th>Employee</th>
+      <th>Role</th>
+      <th>% Attributable</th>
+    </tr>
+    <% @search.consultant_roles.each do |consultant_role| %>
+    <tr>
+      <td><%= "#{consultant_role.employee.first_name} #{consultant_role.employee.last_name}" %></td>
+      <td><%= consultant_role.role %></td>
+      <td><%= "#{consultant_role.percent_attributable * 100}%" unless consultant_role.percent_attributable == nil %></td>
+    </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="medium-margin-bottom red">
+  This search does not have any employees assigned yet.
+  </p>
+<% end %>
+
+
+<%= form_for(@consultant_role) do |f| %>
+  <% if @consultant_role.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@consultant_role.errors.count, "error") %> prohibited this consultant_role from being saved:</h2>
+
+      <ul>
+      <% @consultant_role.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :search_id %>
+
+  <div class="field">
+    <%= f.label :employee_id, "Employee" %><br />
+    <%= f.collection_select :employee_id, Employee.order('full_name ASC').all, :id, :full_name %>
+  </div>
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.select :role, ['Client Advocate', 'Search Partner', 'Research Partner'] %>
+  </div>
+  <div class="field">
+    <%= f.label :percent_attributable %><br />
+    <%= f.number_field :percent_attributable, :placeholder => '%' %>
+  </div>
+  <fieldset>
+    <div class="actions">
+      <center><%= f.submit 'Save Employee to Search', :class => 'btn btn-primary span4' %></center>
+    </div>
+  </fieldset>
+<% end %>

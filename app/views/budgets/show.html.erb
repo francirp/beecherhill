@@ -1,0 +1,107 @@
+</div>
+
+<div class="medium-margin">
+  <h2 class="medium-margin"><%= @budget.year %> Budget</h2>
+
+  <p>
+    <b>Total expenses:</b>
+    <%= number_to_currency(@budget.total_expenses, :precision => 0) %>
+  </p>
+
+  <p>
+    <b>Revenue generating wages:</b>
+    <%= number_to_currency(@budget.revenue_generating_wages, :precision => 0) %>
+  </p>
+
+  <p>
+    <b>Target profit percent:</b>
+    <%= @budget.target_profit_percent * 100 %>%
+  </p>
+
+  <p>
+    <b>Revenue to achieve desired profit:</b>
+    <%= number_to_currency(@budget.desired_revenue, :precision => 0) %>
+  </p>
+
+  <p>
+    <b>Projected revenue based on factor goals:</b>
+    <%= number_to_currency(@budget.projected_revenue, :precision => 0) %>
+  </p>
+
+  <p>
+    <b>Billable Rate</b>
+    <%= number_to_currency(@budget.desired_revenue / (@budget.rev_generating_annual_hours('Owner') + @budget.rev_generating_annual_hours('Relationship Management') + @budget.rev_generating_annual_hours('Recruitment')), :precision => 2) %>
+  </p>
+
+
+  <%= link_to 'Edit', edit_budget_path(@budget) %> |
+  <%= link_to 'Back', budgets_path %>
+
+
+<div class="medium-margin"></div>
+
+<div class="row-fluid">
+  <div class="span8">
+    <table class="table table-striped">
+      <tr>
+        <th>Category</th>
+        <th>Annual Hours</th>
+        <th>Revenue Generating Hours</th>
+      </tr>
+
+    <% total_annual_hours_array = [] %>
+    <% total_rev_generating_annual_hours_array = [] %>
+    <% ['Owner', 'Relationship Management', 'Recruitment', 'Research', 'Administrative'].each do |category| %>
+      <% total_annual_hours_array << @budget.annual_hours(category) %>
+      <% total_rev_generating_annual_hours_array << @budget.rev_generating_annual_hours(category) %>
+      <tr>
+        <td><%= category %></td>
+        <td><%= number_with_precision(@budget.annual_hours(category), :precision => 0, :delimiter => ',') %></td>
+        <td><%= number_with_precision(@budget.rev_generating_annual_hours(category), :precision => 0, :delimiter => ',') %></td>
+      </tr>
+    <% end %>
+      <tr>
+        <td class="total-row">Total</td>
+        <td class="total-row"><%= number_with_precision(total_annual_hours_array.sum, :precision => 0, :delimiter => ',') %></td>
+        <td class="total-row"><%= number_with_precision(total_rev_generating_annual_hours_array.sum, :precision => 0, :delimiter => ',') %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="medium-margin heavy-margin-top medium-margin-bottom">
+  <h3>Budget Details <%= link_to 'Add Employee to Budget', new_employee_budget_path(:budget_id => @budget.id), :class => 'btn btn-success' %>
+  </h3>
+</div>
+
+<table class="table table-striped">
+  <tr>
+    <th>Employee</th>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Actual Paid</th>
+    <th>% Revenue Generating</th>
+    <th>Factor Goal</th>
+    <th>Hours / Year</th>
+    <th>Billable Rate</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+
+<% @budget.employee_budgets.each do |employee_budget| %>
+  <tr>
+    <td><%= "#{employee_budget.employee.first_name} #{employee_budget.employee.last_name}" %></td>
+    <td><%= employee_budget.employee.title %></td>
+    <td><%= employee_budget.employee.category %></td>
+    <td><%= number_to_currency(employee_budget.annual_salary_paid) %></td>
+    <td><%= "#{employee_budget.employee.percent_revenue_generating * 100}%" unless employee_budget.employee.percent_revenue_generating == nil %></td>
+    <td><%= employee_budget.employee.factor_goal %></td>
+    <td><%= number_with_precision(employee_budget.employee.hours_per_year, :precision => 0, :delimiter => ',') %></td>
+    <td><%= number_to_currency(employee_budget.billable_rate) %></td>
+    <td><%= link_to 'Edit', edit_employee_budget_path(employee_budget), :class => 'btn btn-mini btn-warning' %></td>
+    <td><%= link_to 'Delete', employee_budget, :class => 'btn btn-mini btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+</div>

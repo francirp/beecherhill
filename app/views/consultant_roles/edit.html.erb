@@ -1,0 +1,8 @@
+<h2 class="medium-margin-bottom">Edit Employee for <%= @search.reference_num %></h2>
+<p>Client: <%= @search.client.name %></p>
+<p class="heavy-margin-bottom">Title: <%= @search.title %></p>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @consultant_role %> |
+<%= link_to 'Back', consultant_roles_path %>

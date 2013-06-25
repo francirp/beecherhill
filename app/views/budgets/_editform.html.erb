@@ -1,0 +1,48 @@
+<%= form_tag(@budget) do %>
+  <% if @budget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@budget.errors.count, "error") %> prohibited this budget from being saved:</h2>
+
+      <ul>
+      <% @budget.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label_tag :year %><br />
+    <%= select :budget, :year, 2000..2050 %>
+  </div>
+  <div class="field">
+    <%= label_tag :total_expenses %><br />
+    <%= text_field_tag :total_expenses, @budget.total_expenses, :class => 'currency' %>
+  </div>
+  <div class="field">
+    <%= label_tag :revenue_generating_wages %><br />
+    <%= text_field_tag :revenue_generating_wages, @budget.revenue_generating_wages, :class => 'currency' %>
+  </div>
+  <div class="field">
+    <%= label_tag :target_profit_percent, "Target Profit %" %><br />
+    <%= text_field_tag :target_profit_percent, @budget.target_profit_percent * 100, :placeholder => "%", :class => 'percent' %>
+  </div>
+  <div class="actions" id="">
+    <%= submit_tag %>
+  </div>
+<% end %>
+
+
+
+<script>
+ $(document).ready(function()
+            {
+                $('.currency').blur(function()
+                {
+                    $('.currency').formatCurrency();
+                });
+
+            });
+
+
+</script>

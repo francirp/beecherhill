@@ -1,0 +1,90 @@
+body {
+  margin-bottom: 60px;
+  margin-top: 80px;
+}
+
+.red { color: red;}
+
+form {
+  background: linear-gradient(top, #fff, #f8f8f8);
+  border: 1px solid #d0d2d5;
+  border-bottom: 1px solid #bebfc2;
+  border-radius: 4px;
+  margin: 0 0 20px 0;
+  padding: 20px;
+  width: 400px;
+}
+
+th {
+  padding: 5px;
+}
+
+td {
+  padding: 5px;
+}
+
+td.total-row{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+label {
+  color: #404853;
+  display: block;
+  font-weight: bold;
+}
+
+input {
+  background: #fff;
+  border: 1px solid #c6c9cc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 #fff;
+  color: #555;
+  font: 13px/20px 'Droid Sans', Arial, 'Helvetica Neue', 'Lucida Grande', sans-serif;
+  margin: 0 0 20px 0;
+  padding: 5px;
+  width: 380px;
+}
+
+fieldset {
+  background: -webkit-linear-gradient(top, #ebeced, #dedfe0);
+  border: none;
+  border-top: 1px solid #d0d2d5;
+  border-radius: 0 0 4px 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  margin: 5px 0 -20px -20px;
+  padding: 18px 20px;
+  width: 400px
+}
+
+fieldset input {
+  margin: 0;
+  width: auto;
+}
+
+.light-padding { padding: 10px;}
+.medium-padding { padding: 20px;}
+.heavy-padding { padding: 40px;}
+
+.light-margin { margin: 10px;}
+.medium-margin { margin: 20px;}
+.heavy-margin { margin: 40px;}
+
+.light-margin-left { margin-left: 10px;}
+.medium-margin-left { margin-left: 20px;}
+.heavy-margin-left { margin-left: 40px;}
+
+.light-margin-right { margin-right: 10px;}
+.medium-margin-right { margin-right: 20px;}
+.heavy-margin-right { margin-right: 40px;}
+
+.light-margin-bottom { margin-bottom: 10px;}
+.medium-margin-bottom { margin-bottom: 20px;}
+.heavy-margin-bottom { margin-bottom: 40px;}
+
+.light-margin-top { margin-top: 10px;}
+.medium-margin-top { margin-top: 20px;}
+.heavy-margin-top { margin-top: 40px;}
+
+th { font-size: 14px;}
+td { font-size: 12px;}

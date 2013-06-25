@@ -1,0 +1,6 @@
+<h2>Editing <%= "#{@employee_budget.employee.first_name} #{@employee_budget.employee.last_name} Budget #{@employee_budget.budget.year}" %></h2>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @employee_budget %> |
+<%= link_to 'Back', employee_budgets_path %>

@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  reference_num: MyString
+  client_id: 1
+  new_client?: false
+  title: MyString
+  function: MyString
+  level: MyString
+  search_start_date: 2013-06-18
+  engagement_letter_signed_date: 2013-06-18
+  be_lead: MyString
+  source: MyString
+  introduction: MyString
+  salary: 1
+  target_bonus_percent: 1.5
+  fee_percent: 1.5
+  status: MyString
+  reason_closed: MyString
+  notes: MyText
+  name_of_hire: MyString
+  signed_offer_date: 2013-06-18
+  placement_start_date: 2013-06-18
+  signing_bonus: 1
+  equity: MyString
+  network: MyString
+  introduced_by: MyString
+  relocation_from: MyString
+  relocation_to: MyString
+  diversity: MyString
+  gender: MyString
+
+two:
+  reference_num: MyString
+  client_id: 1
+  new_client?: false
+  title: MyString
+  function: MyString
+  level: MyString
+  search_start_date: 2013-06-18
+  engagement_letter_signed_date: 2013-06-18
+  be_lead: MyString
+  source: MyString
+  introduction: MyString
+  salary: 1
+  target_bonus_percent: 1.5
+  fee_percent: 1.5
+  status: MyString
+  reason_closed: MyString
+  notes: MyText
+  name_of_hire: MyString
+  signed_offer_date: 2013-06-18
+  placement_start_date: 2013-06-18
+  signing_bonus: 1
+  equity: MyString
+  network: MyString
+  introduced_by: MyString
+  relocation_from: MyString
+  relocation_to: MyString
+  diversity: MyString
+  gender: MyString
